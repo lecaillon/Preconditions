@@ -1,6 +1,4 @@
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master)
-
-# Preconditions
+# Preconditions [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master)
 This project is inspired by Google Guava Preconditions. 
 
 ## What is Preconditions ?
