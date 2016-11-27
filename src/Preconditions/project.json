@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0-*",
   "title": "Preconditions",
   "description": "Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.",
@@ -17,8 +17,5 @@
         "NETStandard.Library": "1.6.1-*"
       }
     }
-  },
-  "buildOptions": {
-    "xmlDoc": true
   }
 }
