@@ -9,8 +9,9 @@ namespace Preconditions
     /// </summary>
     public static class Check
     {
-        private const string ArgumentIsEmpty = "The string argument '{0}' cannot be empty.";
-        private const string CollectionArgumentIsEmpty = "The collection argument '{0}' must contain at least one element.";
+        private const string ArgumentIsEmpty = "The string cannot be empty.";
+        private const string CollectionArgumentIsEmpty = "The collection must contain at least one element.";
+        private const string CollectionArgumentHasNullElement = "The collection must not contain any null element.";
 
         /// <summary>
         ///     Ensures that the string passed as a parameter is neither null or empty.
@@ -29,7 +30,7 @@ namespace Preconditions
             }
             else if (text.Trim().Length == 0)
             {
-                e = new ArgumentException(string.Format(ArgumentIsEmpty, parameterName));
+                e = new ArgumentException(ArgumentIsEmpty, parameterName);
             }
 
             if (e != null)
@@ -55,7 +56,7 @@ namespace Preconditions
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
-                throw new ArgumentException(string.Format(ArgumentIsEmpty, parameterName));
+                throw new ArgumentException(ArgumentIsEmpty, parameterName);
             }
 
             return text;
@@ -98,7 +99,7 @@ namespace Preconditions
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
-                throw new ArgumentException(string.Format(CollectionArgumentIsEmpty, parameterName));
+                throw new ArgumentException(CollectionArgumentIsEmpty, parameterName);
             }
 
             return collection;
@@ -121,7 +122,7 @@ namespace Preconditions
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
-                throw new ArgumentException(string.Format(CollectionArgumentIsEmpty, parameterName));
+                throw new ArgumentException(CollectionArgumentIsEmpty, parameterName);
             }
 
             return enumerable;
@@ -144,7 +145,7 @@ namespace Preconditions
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
-                throw new ArgumentException(parameterName);
+                throw new ArgumentException(CollectionArgumentHasNullElement, parameterName);
             }
 
             return enumerable;
