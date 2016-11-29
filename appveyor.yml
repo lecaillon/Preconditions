@@ -18,3 +18,5 @@ after_test:
     nuget pack Preconditions.nuspec
     
     cd ../..
+artifacts:
+- path: '**\*.nupkg'
