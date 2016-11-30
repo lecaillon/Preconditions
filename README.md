@@ -13,3 +13,16 @@ On failure its methods throw an ArgumentException.
 Because Preconditions is only one code file, you can either copy paste the Check.cs class or include the Nuget package to your project :
 https://www.nuget.org/packages/Preconditions.NET
 
+## Exemple
+
+```c#
+public class Employee : Person
+{
+    public string Id { get; }
+
+    public Employee(string name, string id) : base(Check.NotNullOrEmpty(name, nameof(name)))
+    {
+        Id = Check.NullableButNotEmpty(id, nameof(id));
+    }
+}
+```
