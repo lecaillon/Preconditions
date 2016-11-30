@@ -7,3 +7,9 @@ Preconditions provide convenience static methods that help to check that a metho
 Preconditions returns the tested value on success allowing to check and call a method at the same time.
 
 On failure its methods throw an ArgumentException.
+
+## How to use it ?
+
+Because Preconditions is only one code file, you can either copy paste the Check.cs class or include the Nuget package to your project :
+https://www.nuget.org/packages/Preconditions.NET
+
