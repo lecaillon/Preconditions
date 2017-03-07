@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Xunit;
 
 namespace Preconditions.Tests
@@ -120,7 +121,7 @@ namespace Preconditions.Tests
             Assert.Throws<ArgumentException>(nameof(text), () => Check.NullableButNotEmpty(text, nameof(text)));
         }
 
-        [Fact(DisplayName = "When the string is null returns the null")]
+        [Fact(DisplayName = "When the string is null returns null")]
         public void When_string_is_null_Returns_null()
         {
             string text = null;
@@ -162,6 +163,34 @@ namespace Preconditions.Tests
             string text = "PSG";
 
             Assert.Same(text, Check.NotNullOrEmpty(text, nameof(text)));
+        }
+
+        #endregion
+
+        #region FileExists
+
+        [Fact(DisplayName = "When file is null throws ArgumentNullException")]
+        public void When_file_is_null_Throws_ArgumentNullException()
+        {
+            string file = null;
+
+            Assert.Throws<ArgumentNullException>(nameof(file), () => Check.FileExists(file, nameof(file)));
+        }
+
+        [Fact(DisplayName = "When file does not exist throws ArgumentException")]
+        public void When_file_does_not_exist_Throws_ArgumentException()
+        {
+            string file = @"C:\PSG.fr";
+
+            Assert.Throws<ArgumentException>(nameof(file), () => Check.FileExists(file, nameof(file)));
+        }
+
+        [Fact(DisplayName = "When the file exists returns the file")]
+        public void When_file_exists_Returns_file()
+        {
+            string file = typeof(CheckTest).GetTypeInfo().Assembly.Location;
+
+            Assert.Same(file, Check.NotNullOrEmpty(file, nameof(file)));
         }
 
         #endregion
