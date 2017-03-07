@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Preconditions.NET</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <authors>Philippe Lécaillon</authors>
     <owners>Philippe Lécaillon</owners>
     <licenseUrl>https://github.com/lecaillon/Preconditions/blob/master/LICENSE</licenseUrl>
@@ -13,7 +13,9 @@
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright © P.Lécaillon 2016</copyright>
     <tags>Preconditions Guava Check</tags>
-    <dependencies />
+    <dependencies>
+      <group targetFramework=".NETStandard1.3" />
+    </dependencies>
   </metadata>
   <files>
     <file src="bin\Release\**\*.dll" target="lib" />
