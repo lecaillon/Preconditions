@@ -1,4 +1,4 @@
-# Preconditions [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master)
+# Preconditions [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master) [![NuGet](https://buildstats.info/nuget/Preconditions.NET)](https://www.nuget.org/packages/Preconditions.NET)
 This project is inspired by Google Guava Preconditions. 
 
 ## What is Preconditions ?
