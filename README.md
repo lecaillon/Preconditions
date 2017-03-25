@@ -12,6 +12,9 @@ On failure its methods throw an ArgumentException.
 
 Because Preconditions is only one code file, you can either copy paste the Check.cs class or include the Nuget package to your project :
 https://www.nuget.org/packages/Preconditions.NET
+```
+PM> Install-Package Preconditions.NET
+```
 
 ## Example
 
