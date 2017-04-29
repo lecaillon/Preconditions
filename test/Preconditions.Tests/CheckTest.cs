@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Xunit;
 
@@ -185,12 +186,40 @@ namespace Preconditions.Tests
             Assert.Throws<ArgumentException>(nameof(file), () => Check.FileExists(file, nameof(file)));
         }
 
-        [Fact(DisplayName = "When the file exists returns the file")]
+        [Fact(DisplayName = "When file exists returns the file")]
         public void When_file_exists_Returns_file()
         {
             string file = typeof(CheckTest).GetTypeInfo().Assembly.Location;
 
             Assert.Same(file, Check.NotNullOrEmpty(file, nameof(file)));
+        }
+
+        #endregion
+
+        #region DirectoryExists
+
+        [Fact(DisplayName = "When directory is null throws ArgumentNullException")]
+        public void When_directory_is_null_Throws_ArgumentNullException()
+        {
+            string dir = null;
+
+            Assert.Throws<ArgumentNullException>(nameof(dir), () => Check.DirectoryExists(dir, nameof(dir)));
+        }
+
+        [Fact(DisplayName = "When directory does not exist throws ArgumentException")]
+        public void When_directory_does_not_exist_Throws_ArgumentException()
+        {
+            string dir = @"C:\PSG\";
+
+            Assert.Throws<ArgumentException>(nameof(dir), () => Check.DirectoryExists(dir, nameof(dir)));
+        }
+
+        [Fact(DisplayName = "When directory exists returns the directory")]
+        public void When_directory_exists_Returns_directory()
+        {
+            string dir = Path.GetDirectoryName(typeof(CheckTest).GetTypeInfo().Assembly.Location);
+
+            Assert.Same(dir, Check.NotNullOrEmpty(dir, nameof(dir)));
         }
 
         #endregion
