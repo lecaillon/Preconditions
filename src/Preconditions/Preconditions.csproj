@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFrameworks>netstandard1.3;net452;</TargetFrameworks>
     <PackageId>Preconditions.NET</PackageId>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <Authors>Philippe Lécaillon</Authors>
     <Product>C# Preconditions inspired by Google Guava Preconditions.</Product>
     <Description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</Description>
@@ -16,6 +16,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard1.3\Preconditions.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\net452\Preconditions.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
