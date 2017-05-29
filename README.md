@@ -42,4 +42,4 @@ public class Employee : Person
 
 ## Feedback and issues
 Feedback, improvements, ideas are welcomed.
-Feel free to create new [issues](https://github.com/lecaillon/Preconditions/issues) at the issues section
+Feel free to create new [issues](https://github.com/lecaillon/Preconditions/issues) at the issues section.
