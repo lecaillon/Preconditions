@@ -6,7 +6,7 @@ Preconditions provide convenience static methods that help to check that a metho
 
 Preconditions returns the tested value on success allowing to check and call a method at the same time.
 
-On failure its methods always throw an `ArgumentException`.
+On failure its methods **always** throw an `ArgumentException`.
 
 ## How to use it ?
 
@@ -29,3 +29,17 @@ public class Employee : Person
     }
 }
 ```
+
+## The Check list
+
+- Check.NotNullOrEmpty(*string*)
+- Check.NullableButNotEmpty (*string*)
+- Check.NotNull(*object*)
+- Check.NotEmpty(*ICollection or IEnumerable*)
+- Check.HasNoNulls(*IEnumerable*)
+- Check.FileExists()
+- Check.DirectoryExists()
+
+## Feedback and issues
+Feedback, improvements, ideas are welcomed.
+Feel free to create new [issues](https://github.com/lecaillon/Preconditions/issues) at the issues section
