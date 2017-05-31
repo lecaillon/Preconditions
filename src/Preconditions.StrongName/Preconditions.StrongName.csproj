@@ -13,6 +13,7 @@
     <PackageLicenseUrl>https://github.com/lecaillon/Preconditions/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/lecaillon/Preconditions</PackageProjectUrl>
     <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../Preconditions.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
     <RootNamespace>Preconditions</RootNamespace>
     <AssemblyName>Preconditions</AssemblyName>
