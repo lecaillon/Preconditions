@@ -19,5 +19,11 @@ after_test:
     nuget pack Preconditions.nuspec
     
     cd ../..
+    
+    cd src/Preconditions.StrongName
+    
+    nuget pack Preconditions.StrongName.nuspec
+    
+    cd ../..
 artifacts:
 - path: '**\*.nupkg'
