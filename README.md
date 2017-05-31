@@ -1,4 +1,4 @@
-# Preconditions [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master) [![NuGet](https://buildstats.info/nuget/Preconditions.NET)](https://www.nuget.org/packages/Preconditions.NET)
+# Preconditions [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master) [![NuGet](https://buildstats.info/nuget/Preconditions.NET)](https://www.nuget.org/packages/Preconditions.NET) [![NuGet](https://buildstats.info/nuget/Preconditions.NET.StrongName)](https://www.nuget.org/packages/Preconditions.NET.StrongName)
 This project is inspired by Google Guava Preconditions. 
 
 ## What is Preconditions ?
@@ -16,6 +16,10 @@ https://www.nuget.org/packages/Preconditions.NET
 PM> Install-Package Preconditions.NET
 ```
 
+A signed version is also available: https://www.nuget.org/packages/Preconditions.NET.StrongName
+```
+PM> Install-Package Preconditions.NET.StrongName
+```
 ## Example
 
 ```c#
