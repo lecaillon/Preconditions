@@ -39,7 +39,7 @@ public class Employee : Person
 - Check.NotNullOrEmpty(*string*)
 - Check.NullableButNotEmpty (*string*)
 - Check.NotNull(*object*)
-- Check.NotEmpty(*ICollection or IEnumerable*)
+- Check.NotEmpty(*IEnumerable*)
 - Check.HasNoNulls(*IEnumerable*)
 - Check.FileExists()
 - Check.DirectoryExists()
