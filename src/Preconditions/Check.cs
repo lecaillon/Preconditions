@@ -15,6 +15,7 @@ namespace Preconditions
         private const string CollectionArgumentHasNullElement = "The collection must not contain any null element.";
         private const string FileNotFound = "The file does not exist.";
         private const string DirectoryNotFound = "Directory not found at: {0}";
+        private const string NumberNotPositive = "The number must be positive.";
 
         /// <summary>
         ///     Ensures that the string passed as a parameter is neither null or empty.
@@ -197,6 +198,139 @@ namespace Preconditions
             }
 
             return path;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static long Positive(long value, string parameterName)
+        {
+            if(value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static int Positive(int value, string parameterName)
+        {
+            if (value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static short Positive(short value, string parameterName)
+        {
+            if (value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static sbyte Positive(sbyte value, string parameterName)
+        {
+            if (value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static decimal Positive(decimal value, string parameterName)
+        {
+            if (value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static double Positive(double value, string parameterName)
+        {
+            if (value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <param name="value"> The number to test. </param>
+        /// <param name="parameterName"> The name of the parameter to test. </param>
+        /// <returns> The positive number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
+        public static float Positive(float value, string parameterName)
+        {
+            if (value <= 0)
+            {
+                NotNullOrEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            }
+
+            return value;
         }
     }
 }

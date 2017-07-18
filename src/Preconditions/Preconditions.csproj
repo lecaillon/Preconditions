@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.3;net452;</TargetFrameworks>
     <PackageId>Preconditions.NET</PackageId>
-    <Version>1.2.1</Version>
+    <Version>1.3.0</Version>
     <Authors>Philippe Lécaillon</Authors>
     <Product>C# Preconditions inspired by Google Guava Preconditions.</Product>
     <Description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</Description>

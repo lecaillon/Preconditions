@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Preconditions.NET</id>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
     <authors>Philippe Lécaillon</authors>
     <owners>Philippe Lécaillon</owners>
     <licenseUrl>https://github.com/lecaillon/Preconditions/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>C# Preconditions inspired by Google Guava Preconditions.</summary>
     <description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</description>
-    <releaseNotes>Add support of .NET 4.5.1.</releaseNotes>
+    <releaseNotes>Add new precondition: Check.Positive(number)</releaseNotes>
     <copyright>Copyright © P.Lécaillon 2016</copyright>
     <tags>Preconditions Guava Check</tags>
     <dependencies>
