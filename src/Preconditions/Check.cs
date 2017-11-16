@@ -28,6 +28,7 @@ namespace Preconditions
         public static string NotNullOrEmpty(string text, string parameterName)
         {
             Exception e = null;
+
             if (ReferenceEquals(text, null))
             {
                 e = new ArgumentNullException(parameterName);
@@ -40,7 +41,7 @@ namespace Preconditions
             if (e != null)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
-                
+
                 throw e;
             }
 
@@ -192,9 +193,8 @@ namespace Preconditions
             if (!Directory.Exists(path))
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(string.Format(DirectoryNotFound, path), parameterName,
-                                            new DirectoryNotFoundException(path));
+                
+                throw new ArgumentException(string.Format(DirectoryNotFound, path), parameterName, new DirectoryNotFoundException(path));
             }
 
             return path;
@@ -205,11 +205,18 @@ namespace Preconditions
         /// </summary>
         /// <param name="value"> The number to test. </param>
         /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
+        /// <returns> The number that was validated. </returns>
         /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static long Positive(long value, string parameterName)
+        public static T Positive<T>(T value, string parameterName) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
         {
-            if(value <= 0)
+            // https://msdn.microsoft.com/en-us/library/system.icomparable.compareto
+            // Less than zero - This instance precedes obj in the sort order.
+            // Zero - This instance occurs in the same position in the sort order as obj.
+            // Greater than zero - This instance follows obj in the sort order.
+
+            var minimumValue = default(T);
+            var compare = value.CompareTo(minimumValue);
+            if (compare <= 0)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
@@ -220,15 +227,22 @@ namespace Preconditions
         }
 
         /// <summary>
-        ///     Ensures that the specified number is greater than zero.
+        ///     Ensures that the specified number is less than zero.
         /// </summary>
         /// <param name="value"> The number to test. </param>
         /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static int Positive(int value, string parameterName)
+        /// <returns> The number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not negative. </exception>
+        public static T Negative<T>(T value, string parameterName) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
         {
-            if (value <= 0)
+            // https://msdn.microsoft.com/en-us/library/system.icomparable.compareto
+            // Less than zero - This instance precedes obj in the sort order.
+            // Zero - This instance occurs in the same position in the sort order as obj.
+            // Greater than zero - This instance follows obj in the sort order.
+
+            var minimumValue = default(T);
+            var compare = value.CompareTo(minimumValue);
+            if (compare > 0)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
@@ -239,91 +253,22 @@ namespace Preconditions
         }
 
         /// <summary>
-        ///     Ensures that the specified number is greater than zero.
+        ///     Ensures that the specified number is zero.
         /// </summary>
         /// <param name="value"> The number to test. </param>
         /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static short Positive(short value, string parameterName)
+        /// <returns> The number that was validated. </returns>
+        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not zero. </exception>
+        public static T Zero<T>(T value, string parameterName) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
         {
-            if (value <= 0)
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
+            // https://msdn.microsoft.com/en-us/library/system.icomparable.compareto
+            // Less than zero - This instance precedes obj in the sort order.
+            // Zero - This instance occurs in the same position in the sort order as obj.
+            // Greater than zero - This instance follows obj in the sort order.
 
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        ///     Ensures that the specified number is greater than zero.
-        /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static sbyte Positive(sbyte value, string parameterName)
-        {
-            if (value <= 0)
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        ///     Ensures that the specified number is greater than zero.
-        /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static decimal Positive(decimal value, string parameterName)
-        {
-            if (value <= 0)
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        ///     Ensures that the specified number is greater than zero.
-        /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static double Positive(double value, string parameterName)
-        {
-            if (value <= 0)
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        ///     Ensures that the specified number is greater than zero.
-        /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The positive number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static float Positive(float value, string parameterName)
-        {
-            if (value <= 0)
+            var minimumValue = default(T);
+            var compare = value.CompareTo(minimumValue);
+            if (compare > 0)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
