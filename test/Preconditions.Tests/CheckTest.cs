@@ -226,102 +226,355 @@ namespace Preconditions.Tests
 
         #region Positive
 
-        [Fact(DisplayName = "When long is positive Returns long")]
-        public void When_long_is_positive_Returns_long()
+        [Fact(DisplayName = "Positive - When long is positive Returns long")]
+        public void Positive_When_long_is_positive_Returns_long()
         {
             long number = 1L;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When long is negative throws ArgumentOutOfRangeException")]
-        public void When_long_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When long is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_long_is_negative_Throws_ArgumentOutOfRangeException()
         {
             long number = 0L;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When int is positive Returns int")]
-        public void When_int_is_positive_Returns_int()
+        [Fact(DisplayName = "Positive - When int is positive Returns int")]
+        public void Positive_When_int_is_positive_Returns_int()
         {
             int number = 1;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When int is negative throws ArgumentOutOfRangeException")]
-        public void When_int_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When int is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_int_is_negative_Throws_ArgumentOutOfRangeException()
         {
             int number = 0;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When short is positive Returns short")]
-        public void When_short_is_positive_Returns_short()
+        [Fact(DisplayName = "Positive - When short is positive Returns short")]
+        public void Positive_When_short_is_positive_Returns_short()
         {
             short number = 1;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When short is negative throws ArgumentOutOfRangeException")]
-        public void When_short_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When short is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_short_is_negative_Throws_ArgumentOutOfRangeException()
         {
             short number = 0;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When sbyte is positive Returns sbyte")]
-        public void When_sbyte_is_positive_Returns_sbyte()
+        [Fact(DisplayName = "Positive - When sbyte is positive Returns sbyte")]
+        public void Positive_When_sbyte_is_positive_Returns_sbyte()
         {
             sbyte number = 1;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When sbyte is negative throws ArgumentOutOfRangeException")]
-        public void When_sbyte_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When sbyte is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_sbyte_is_negative_Throws_ArgumentOutOfRangeException()
         {
             sbyte number = 0;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When decimal is positive Returns decimal")]
-        public void When_decimal_is_positive_Returns_decimal()
+        [Fact(DisplayName = "Positive - When decimal is positive Returns decimal")]
+        public void Positive_When_decimal_is_positive_Returns_decimal()
         {
             decimal number = 0.1m;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When decimal is negative throws ArgumentOutOfRangeException")]
-        public void When_decimal_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When decimal is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_decimal_is_negative_Throws_ArgumentOutOfRangeException()
         {
             decimal number = 0m;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When double is positive Returns double")]
-        public void When_double_is_positive_Returns_double()
+        [Fact(DisplayName = "Positive - When double is positive Returns double")]
+        public void Positive_When_double_is_positive_Returns_double()
         {
             double number = 0.1d;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When double is negative throws ArgumentOutOfRangeException")]
-        public void When_double_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When double is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_double_is_negative_Throws_ArgumentOutOfRangeException()
         {
             double number = 0d;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When float is positive Returns float")]
-        public void When_float_is_positive_Returns_float()
+        [Fact(DisplayName = "Positive - When float is positive Returns float")]
+        public void Positive_When_float_is_positive_Returns_float()
         {
             float number = 0.1f;
             Assert.Equal(number, Check.Positive(number, nameof(number)));
         }
 
-        [Fact(DisplayName = "When float is negative throws ArgumentOutOfRangeException")]
-        public void When_float_is_negative_Throws_ArgumentOutOfRangeException()
+        [Fact(DisplayName = "Positive - When float is negative throws ArgumentOutOfRangeException")]
+        public void Positive_When_float_is_negative_Throws_ArgumentOutOfRangeException()
         {
             float number = 0f;
             Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Positive(number, nameof(number)));
+        }
+
+        #endregion
+
+        #region Negative
+
+        [Fact(DisplayName = "Negative - When long is negative Returns long")]
+        public void Negative_When_long_is_negative_Returns_long()
+        {
+            long number = -1L;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When long is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_long_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            long number = 1L;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When int is negative Returns int")]
+        public void Negative_When_int_is_negative_Returns_int()
+        {
+            int number = -1;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When int is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_int_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            int number = 1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When short is negative Returns short")]
+        public void Negative_When_short_is_negative_Returns_short()
+        {
+            short number = -1;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When short is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_short_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            short number = 1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When sbyte is negative Returns sbyte")]
+        public void Negative_When_sbyte_is_negative_Returns_sbyte()
+        {
+            sbyte number = -1;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When sbyte is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_sbyte_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            sbyte number = 1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When decimal is negative Returns decimal")]
+        public void Negative_When_decimal_is_negative_Returns_decimal()
+        {
+            decimal number = -0.1m;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When decimal is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_decimal_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            decimal number = 1m;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When double is negative Returns double")]
+        public void Negative_When_double_is_negative_Returns_double()
+        {
+            double number = -0.1d;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When double is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_double_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            double number = 1d;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "When float is negative Returns float")]
+        public void Negative_When_float_is_negative_Returns_float()
+        {
+            float number = -0.1f;
+            Assert.Equal(number, Check.Negative(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Negative - When float is positive throws ArgumentOutOfRangeException")]
+        public void Negative_When_float_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            float number = 1f;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Negative(number, nameof(number)));
+        }
+
+        #endregion
+
+        #region Zero
+
+        [Fact(DisplayName = "Zero - When long is zero Returns long")]
+        public void Zero_When_long_is_zero_Returns_long()
+        {
+            long number = 0L;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When long is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_long_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            long number = 1L;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When long is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_long_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            long number = -1L;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When int is zero Returns int")]
+        public void Zero_When_int_is_zero_Returns_int()
+        {
+            int number = 0;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When int is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_int_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            int number = 1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When int is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_int_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            int number = -1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When short is zero Returns short")]
+        public void Zero_When_short_is_zero_Returns_short()
+        {
+            short number = 0;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When short is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_short_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            short number = 1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When short is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_short_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            short number = -1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When sbyte is zero Returns sbyte")]
+        public void Zero_When_sbyte_is_zero_Returns_sbyte()
+        {
+            sbyte number = 0;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When sbyte is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_sbyte_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            sbyte number = 1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When sbyte is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_sbyte_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            sbyte number = -1;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When decimal is zero Returns decimal")]
+        public void Zero_When_decimal_is_zero_Returns_decimal()
+        {
+            decimal number = -0.0m;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When decimal is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_decimal_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            decimal number = 1m;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When decimal is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_decimal_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            decimal number = -1m;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When double is zero Returns double")]
+        public void Zero_When_double_is_zero_Returns_double()
+        {
+            double number = 0.0d;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When double is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_double_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            double number = 1d;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When double is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_double_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            double number = -1d;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When float is zero Returns float")]
+        public void Zero_When_float_is_zero_Returns_float()
+        {
+            float number = -0.0f;
+            Assert.Equal(number, Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When float is positive throws ArgumentOutOfRangeException")]
+        public void Zero_When_float_is_positive_Throws_ArgumentOutOfRangeException()
+        {
+            float number = 1f;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
+        }
+
+        [Fact(DisplayName = "Zero - When float is negative throws ArgumentOutOfRangeException")]
+        public void Zero_When_float_is_negative_Throws_ArgumentOutOfRangeException()
+        {
+            float number = -1f;
+            Assert.Throws<ArgumentOutOfRangeException>(nameof(number), () => Check.Zero(number, nameof(number)));
         }
 
         #endregion

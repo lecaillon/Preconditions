@@ -268,7 +268,7 @@ namespace Preconditions
 
             var minimumValue = default(T);
             var compare = value.CompareTo(minimumValue);
-            if (compare > 0)
+            if (compare > 0 || compare < 0)
             {
                 NotNullOrEmpty(parameterName, nameof(parameterName));
 
