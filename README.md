@@ -43,6 +43,9 @@ public class Employee : Person
 - Check.HasNoNulls(*IEnumerable*)
 - Check.FileExists()
 - Check.DirectoryExists()
+- Check.Negative()
+- Check.Zero()
+- Check.Positive()
 
 ## Feedback and issues
 Feedback, improvements, ideas are welcomed.
