@@ -10,7 +10,7 @@ build:
   verbosity: minimal
 test_script:
 - ps: >-
-    cd test/Preconditions.Tests/
+    cd tests/Preconditions.Tests/
     
     dotnet test
     
