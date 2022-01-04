@@ -1,22 +1,43 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net47;net46;net45</TargetFrameworks>
-    <PackageId>Preconditions.NET</PackageId>
-    <Version>1.4.0</Version>
-    <Authors>Philippe Lécaillon</Authors>
-    <Product>C# Preconditions inspired by Google Guava Preconditions.</Product>
-    <Description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</Description>
-    <Company />
-    <PackageTags>Preconditions Guava Check</PackageTags>
-    <Copyright>Copyright © P.Lécaillon 2016</Copyright>
-    <PackageLicenseUrl>https://github.com/lecaillon/Preconditions/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/lecaillon/Preconditions</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<PackageId>Preconditions.NET</PackageId>
+		<Authors>Philippe Lécaillon</Authors>
+		<Version>2.0.0</Version>
+		<Copyright>Copyright © P.Lécaillon 2022</Copyright>
+		<Description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</Description>
+		<PackageIcon>logo128.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/lecaillon/Preconditions</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>preconditions;check</PackageTags>
+		<PackageReleaseNotes>## Features
+- Add support of the new .NET 6 `CallerArgumentExpression` attribute
+- Add Check.NotEmpty(*Guid*)
+- Add Check.True(*Func&gt;bool&lt;*)
+- Add Check.PositiveOrNull()
+- Add Check.NegativeOrNull()
+- Add Check.NotNegativeOrNull()
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.3\Preconditions.xml</DocumentationFile>
-    <DocumentationFile>bin\Release\net452\Preconditions.xml</DocumentationFile>
-  </PropertyGroup>
+## Breaking changes
+- Supports .NET 6 and .NET Standard 2.0 only
+- Remove Check.Zero()
+- Rename Check.NotEmpty(IEnumerable) in Check.NotNullOrEmpty(IEnumerable)</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\logo128.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 </Project>
