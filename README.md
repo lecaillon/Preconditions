@@ -13,7 +13,7 @@ On failure it **always** throws an `ArgumentException`, `ArgumentNullException` 
 
 Preconditions.NET version 2 is a complete rewrite that takes advantage of the new .NET 6 `CallerArgumentExpression` attribute.
 It is no more mandatory to pass the parameter name being checked.
-It also adds new methods (see the checklist) and remove Check.Zero().
+It also adds new methods (see the [checklist](/the-checklist)) and remove Check.Zero().
 
 ## How to use it ?
 
