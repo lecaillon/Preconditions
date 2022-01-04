@@ -19,7 +19,7 @@ It also adds new methods (cf. [checklist](#the-checklist)) and remove Check.Zero
 
 ## How to use it ?
 
-Because Preconditions.NET is only one code file, you can either copy the Check.cs class or include the NuGet package to your project :
+Because Preconditions.NET is only one code file, you can either copy the [Check.cs](https://github.com/lecaillon/Preconditions/blob/master/src/Preconditions/Check.cs) class or include the NuGet package to your project :
 ```
 PM> Install-Package Preconditions.NET
 ```
