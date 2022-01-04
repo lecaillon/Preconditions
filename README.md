@@ -1,6 +1,8 @@
 # Preconditions.NET [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/p1qsj8wt27023w0u/branch/master?svg=true)](https://ci.appveyor.com/project/lecaillon/preconditions/branch/master) [![NuGet](https://buildstats.info/nuget/Preconditions.NET)](https://www.nuget.org/packages/Preconditions.NET)
 <img align="right" width="128px" height="128px" src="https://raw.githubusercontent.com/lecaillon/Preconditions/master/logo128.png">
 
+Preconditions.NET is a personal, free-time project with no funding. If you use Evolve in your daily work and feel that it makes your life easier, consider supporting its development via [GitHub Sponsors](https://github.com/sponsors/lecaillon) :heart: and by adding a star to this repository :star:
+
 ## Introduction
 
 Preconditions.NET provides convenience static methods to help check that a method or a constructor is invoked with proper parameter or not. In other words it checks the *pre-conditions*. The goal of this class is to improve readability of code.
