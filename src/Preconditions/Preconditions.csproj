@@ -14,11 +14,11 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/lecaillon/Preconditions</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>preconditions;check</PackageTags>
+		<PackageTags>preconditions;guard;check;argument-checks</PackageTags>
 		<PackageReleaseNotes>## Features
 - Add support of the new .NET 6 `CallerArgumentExpression` attribute
 - Add Check.NotEmpty(*Guid*)
-- Add Check.True(*Func&gt;bool&lt;*)
+- Add Check.True(*Func&lt;bool&gt;*)
 - Add Check.PositiveOrNull()
 - Add Check.NegativeOrNull()
 - Add Check.NotNegativeOrNull()
