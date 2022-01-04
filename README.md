@@ -13,8 +13,9 @@ On failure it **always** throws an `ArgumentException`, `ArgumentNullException` 
 
 ## Why Preconditions.NET v2 ?
 
-Preconditions.NET version 2 is a complete rewrite that takes advantage of the new .NET 6 `CallerArgumentExpression` attribute.
+Preconditions.NET v2.0.0 is a complete rewrite that takes advantage of nullable types, the `NotNull` attribute and the new .NET 6 `CallerArgumentExpression` attribute.
 It is no more mandatory to pass the parameter name being checked.
+
 It also adds new methods (cf. [checklist](#the-checklist)) and remove Check.Zero().
 
 ## How to use it ?
