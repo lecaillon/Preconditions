@@ -39,7 +39,7 @@ public class Employee : Person
 }
 ```
 
-## The Checklist
+## The checklist
 
 - Check.NotNull(*object*)
 - Check.NullableButNotEmpty (*string*)
