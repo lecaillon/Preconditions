@@ -1,5 +1,5 @@
-version: 1.1.{build}
-image: Visual Studio 2017
+version: 2.0.{build}
+image: Visual Studio 2022
 environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -20,12 +20,6 @@ after_test:
     cd src/Preconditions
     
     nuget pack Preconditions.nuspec
-    
-    cd ../..
-    
-    cd src/Preconditions.StrongName
-    
-    nuget pack Preconditions.StrongName.nuspec
     
     cd ../..
 artifacts:

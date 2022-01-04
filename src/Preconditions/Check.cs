@@ -1,200 +1,170 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Preconditions
+﻿namespace Preconditions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.CompilerServices;
+
     /// <summary>
-    /// Static convenience methods to check that a method or a constructor is invoked with proper parameter or not.
+    ///     Static convenience methods that ensure a method or a constructor is invoked with proper parameter.
     /// </summary>
     public static class Check
     {
         private const string ArgumentIsEmpty = "The string cannot be empty.";
         private const string CollectionArgumentIsEmpty = "The collection must contain at least one element.";
+        private const string GuidArgumentIsEmpty = "The GUID cannot be empty.";
         private const string CollectionArgumentHasNullElement = "The collection must not contain any null element.";
         private const string FileNotFound = "The file does not exist.";
         private const string DirectoryNotFound = "Directory not found at: {0}";
         private const string NumberNotPositive = "The number must be positive.";
+        private const string NumberNotNegative = "The number must be negative.";
+        private const string NumberNotPositiveOrZero = "The number must be positive or equals zero.";
+        private const string NotTrue = "The predicate is false.";
 
         /// <summary>
-        ///     Ensures that the string passed as a parameter is neither null or empty.
+        ///     Throws an <see cref="ArgumentNullException"/> if <paramref name="reference"/> is null.
         /// </summary>
-        /// <param name="text"> The string to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The not null or empty string that was validated. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the string is null. </exception>
-        /// <exception cref="ArgumentException"> Throws ArgumentException if the string is empty. </exception>
-        public static string NotNullOrEmpty(string text, string parameterName)
+        public static T NotNull<T>([NotNull] T reference, [CallerArgumentExpression("reference")] string? paramName = null)
         {
-            Exception e = null;
-
-            if (ReferenceEquals(text, null))
+            if (reference is null)
             {
-                e = new ArgumentNullException(parameterName);
-            }
-            else if (text.Trim().Length == 0)
-            {
-                e = new ArgumentException(ArgumentIsEmpty, parameterName);
-            }
-
-            if (e != null)
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw e;
-            }
-
-            return text;
-        }
-
-        /// <summary>
-        ///     Ensures that a string is not empty, but can be null.
-        /// </summary>
-        /// <param name="text"> The string to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The non empty string that was validated. </returns>
-        /// <exception cref="ArgumentException"> Throws ArgumentException if the string is empty. </exception>
-        public static string NullableButNotEmpty(string text, string parameterName)
-        {
-            if (!ReferenceEquals(text, null) && (text.Length == 0))
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(ArgumentIsEmpty, parameterName);
-            }
-
-            return text;
-        }
-
-        /// <summary>
-        ///     Ensures that an object <paramref name="reference"/> passed as a parameter is not null.
-        /// </summary>
-        /// <typeparam name="T"> The type of the reference to test. </typeparam>
-        /// <param name="reference"> An object reference. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The non-null reference that was validated. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the reference is null. </exception>
-        public static T NotNull<T>(T reference, string parameterName)
-        {
-            if (ReferenceEquals(reference, null))
-            {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentNullException(parameterName);
+                ThrowArgumentNullException(paramName);
             }
 
             return reference;
         }
 
         /// <summary>
-        ///     Ensures that a <paramref name="collection"/> contains at least one element.
+        ///     Ensures that a string is not empty, but can be null.
         /// </summary>
-        /// <typeparam name="T"> The type of the collection to test. </typeparam>
-        /// <param name="collection"> The collection to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The non-empty collection that was validated. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the collection is null. </exception>
-        /// <exception cref="ArgumentException"> Throws ArgumentException when the collection has no element. </exception>
-        public static ICollection<T> NotEmpty<T>(ICollection<T> collection, string parameterName)
+        /// <exception cref="ArgumentException"/>
+        public static string? NullableButNotEmpty(string? text, [CallerArgumentExpression("text")] string? paramName = null)
         {
-            NotNull(collection, parameterName);
+            if (text is null)
+            {
+                return null;
+            }
+
+            if (text.Trim().Length == 0)
+            {
+                ThrowArgumentException(ArgumentIsEmpty, paramName);
+            }
+
+            return text;
+        }
+
+        /// <summary>
+        ///     Ensures a string passed as parameter is neither null or empty.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public static string NotNullOrEmpty([NotNull] string? text, [CallerArgumentExpression("text")] string? paramName = null)
+        {
+            if (text is null)
+            {
+                ThrowArgumentNullException(paramName);
+            }
+            else if (text.Trim().Length == 0)
+            {
+                ThrowArgumentException(ArgumentIsEmpty, paramName);
+            }
+
+            return text;
+        }
+
+        /// <summary>
+        ///     Ensures that a collection contains at least one element.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public static ICollection<T> NotNullOrEmpty<T>(ICollection<T>? collection, [CallerArgumentExpression("collection")] string? paramName = null)
+        {
+            NotNull(collection, paramName);
 
             if (collection.Count == 0)
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(CollectionArgumentIsEmpty, parameterName);
+                ThrowArgumentException(CollectionArgumentIsEmpty, paramName);
             }
 
             return collection;
         }
 
         /// <summary>
-        ///     Ensures that a <paramref name="enumerable"/> contains at least one element.
+        ///     Ensures that an enumerable contains at least one element.
         /// </summary>
-        /// <typeparam name="T"> The type of the enumerable to test. </typeparam>
-        /// <param name="enumerable"> The enumerable to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The non-empty enumerable that was validated. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the enumerable is null. </exception>
-        /// <exception cref="ArgumentException"> Throws ArgumentException when the enumerable has no element. </exception>
-        public static IEnumerable<T> NotEmpty<T>(IEnumerable<T> enumerable, string parameterName)
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
         {
-            NotNull(enumerable, parameterName);
+            NotNull(enumerable, paramName);
 
             if (!enumerable.Any())
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(CollectionArgumentIsEmpty, parameterName);
+                ThrowArgumentException(CollectionArgumentIsEmpty, paramName);
             }
 
             return enumerable;
         }
 
         /// <summary>
-        ///     Ensures that a <paramref name="enumerable"/> does not contain a null element.
+        ///     Ensures that an enumerable is not null and does not contain a null element.
         /// </summary>
-        /// <typeparam name="T"> The type of the enumerable to test. </typeparam>
-        /// <param name="enumerable"> The enumerable to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The enumerable without null element that was validated. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the enumerable is null. </exception>
-        /// <exception cref="ArgumentException"> Throws ArgumentException if the enumerable contains at least one null element. </exception>
-        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T> enumerable, string parameterName) where T : class
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentException"/>
+        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
         {
-            NotNull(enumerable, parameterName);
+            NotNull(enumerable, paramName);
 
-            if (enumerable.Any(e => e == null))
+            if (enumerable.Any(e => e is null))
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(CollectionArgumentHasNullElement, parameterName);
+                ThrowArgumentException(CollectionArgumentHasNullElement, paramName);
             }
 
             return enumerable;
         }
 
         /// <summary>
-        ///     Ensures that the specified file exists.
+        ///     Throws an <see cref="ArgumentException"/> if the GUID is null.
         /// </summary>
-        /// <param name="filePath"> The full path of the file to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The full path of the file tested and found. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the path is null. </exception>
-        /// <exception cref="ArgumentException"> Throws ArgumentException (with an inner FileNotFoundException) if the file is not found. </exception>
-        public static string FileExists(string filePath, string parameterName)
+        public static Guid NotEmpty(Guid guid, [CallerArgumentExpression("guid")] string? paramName = null)
         {
-            NotNullOrEmpty(filePath, parameterName);
-
-            if (!File.Exists(filePath))
+            if (guid == Guid.Empty)
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentException(FileNotFound, parameterName, new FileNotFoundException(FileNotFound, filePath));
+                ThrowArgumentException(GuidArgumentIsEmpty, paramName);
             }
 
-            return filePath;
+            return guid;
         }
 
         /// <summary>
-        ///     Ensures that the specified directory exists.
+        ///     Ensures that the specified file exists and that the caller has the required permissions.
         /// </summary>
-        /// <param name="path"> The full path of the directory to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The full path of the directory tested and found. </returns>
-        /// <exception cref="ArgumentNullException"> Throws ArgumentNullException if the path is null. </exception>
-        /// <exception cref="ArgumentException"> Throws ArgumentException (with an inner DirectoryNotFoundException) if the directory is not found. </exception>
-        public static string DirectoryExists(string path, string parameterName)
+        /// <exception cref="ArgumentException"/>
+        public static string FileExists([NotNull] string? path, [CallerArgumentExpression("path")] string? paramName = null)
         {
-            NotNullOrEmpty(path, parameterName);
+            NotNull(path, paramName);
+
+            if (!File.Exists(path))
+            {
+                ThrowArgumentException(FileNotFound, paramName, new FileNotFoundException(FileNotFound, path));
+            }
+
+            return path;
+        }
+
+        /// <summary>
+        ///     Ensures the given path refers to an existing directory on disk. 
+        /// </summary>
+        /// <exception cref="ArgumentException"/>
+        public static string DirectoryExists([NotNull] string? path, [CallerArgumentExpression("path")] string? paramName = null)
+        {
+            NotNull(path, paramName);
 
             if (!Directory.Exists(path))
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-                
-                throw new ArgumentException(string.Format(DirectoryNotFound, path), parameterName, new DirectoryNotFoundException(path));
+                ThrowArgumentException(string.Format(DirectoryNotFound, path), paramName, new DirectoryNotFoundException(path));
             }
 
             return path;
@@ -203,24 +173,56 @@ namespace Preconditions
         /// <summary>
         ///     Ensures that the specified number is greater than zero.
         /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not positive. </exception>
-        public static T Positive<T>(T value, string parameterName) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T Positive<T>(T value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
         {
-            // https://msdn.microsoft.com/en-us/library/system.icomparable.compareto
-            // Less than zero - This instance precedes obj in the sort order.
-            // Zero - This instance occurs in the same position in the sort order as obj.
-            // Greater than zero - This instance follows obj in the sort order.
-
             var minimumValue = default(T);
             var compare = value.CompareTo(minimumValue);
             if (compare <= 0)
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
+                ThrowArgumentOutOfRangeException(paramName, value, NumberNotPositive);
+            }
 
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+            return value;
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T Positive<T>([NotNull] T? value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        {
+            NotNull(value, paramName);
+
+            return Positive(value.Value, paramName);
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is greater than zero or null.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T? PositiveOrNull<T>(T? value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        {
+            if (value is null)
+            {
+                return null;
+            }
+
+            return Positive(value.Value, paramName);
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is less than zero.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T Negative<T>(T value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        {
+            var minimumValue = default(T);
+            var compare = value.CompareTo(minimumValue);
+            if (compare >= 0)
+            {
+                ThrowArgumentOutOfRangeException(paramName, value, NumberNotNegative);
             }
 
             return value;
@@ -229,53 +231,132 @@ namespace Preconditions
         /// <summary>
         ///     Ensures that the specified number is less than zero.
         /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not negative. </exception>
-        public static T Negative<T>(T value, string parameterName) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T Negative<T>(T? value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
         {
-            // https://msdn.microsoft.com/en-us/library/system.icomparable.compareto
-            // Less than zero - This instance precedes obj in the sort order.
-            // Zero - This instance occurs in the same position in the sort order as obj.
-            // Greater than zero - This instance follows obj in the sort order.
+            NotNull(value, paramName);
 
+            return Negative(value.Value, paramName);
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is less than zero or null.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T? NegativeOrNull<T>(T? value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        {
+            if (value is null)
+            {
+                return null;
+            }
+
+            return Negative(value.Value, paramName);
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is not negative. Means positive or equals zero.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T NotNegative<T>(T value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        {
             var minimumValue = default(T);
             var compare = value.CompareTo(minimumValue);
-            if (compare > 0)
+            if (compare < 0)
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+                ThrowArgumentOutOfRangeException(paramName, value, NumberNotPositiveOrZero);
             }
 
             return value;
         }
 
         /// <summary>
-        ///     Ensures that the specified number is zero.
+        ///     Ensures that the specified number is not negative. Means positive or equals zero.
         /// </summary>
-        /// <param name="value"> The number to test. </param>
-        /// <param name="parameterName"> The name of the parameter to test. </param>
-        /// <returns> The number that was validated. </returns>
-        /// <exception cref="ArgumentOutOfRangeException"> Throws ArgumentOutOfRangeException if the number is not zero. </exception>
-        public static T Zero<T>(T value, string parameterName) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        /// <exception cref="ArgumentNullException"/>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T NotNegative<T>(T? value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
         {
-            // https://msdn.microsoft.com/en-us/library/system.icomparable.compareto
-            // Less than zero - This instance precedes obj in the sort order.
-            // Zero - This instance occurs in the same position in the sort order as obj.
-            // Greater than zero - This instance follows obj in the sort order.
+            NotNull(value, paramName);
 
-            var minimumValue = default(T);
-            var compare = value.CompareTo(minimumValue);
-            if (compare > 0 || compare < 0)
+            return NotNegative(value.Value, paramName);
+        }
+
+        /// <summary>
+        ///     Ensures that the specified number is not negative or null.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static T? NotNegativeOrNull<T>(T? value, [CallerArgumentExpression("value")] string? paramName = null) where T : struct, IComparable, IComparable<T>, IConvertible, IEquatable<T>, IFormattable
+        {
+            if (value is null)
             {
-                NotNullOrEmpty(parameterName, nameof(parameterName));
-
-                throw new ArgumentOutOfRangeException(parameterName, value, NumberNotPositive);
+                return null;
             }
 
-            return value;
+            return NotNegative(value.Value, paramName);
         }
+
+        /// <summary>
+        ///     Ensures a specific predicate is true.
+        /// </summary>
+        /// <exception cref="ArgumentException"/>
+        public static void True(Func<bool>? predicate, [CallerArgumentExpression("predicate")] string? paramName = null)
+        {
+            NotNull(predicate, paramName);
+
+            if (!predicate())
+            {
+                ThrowArgumentException(NotTrue, paramName);
+            }
+        }
+
+        /// <summary>
+        ///     Ensures a specific predicate is true.
+        /// </summary>
+        /// <exception cref="ArgumentException"/>
+        public static T? True<T>(Func<bool>? predicate, T? returnValue, [CallerArgumentExpression("predicate")] string? paramName = null)
+        {
+            True(predicate, paramName);
+
+            return returnValue;
+        }
+
+        [DoesNotReturn]
+        private static void ThrowArgumentNullException(string? paramName) => throw new ArgumentNullException(paramName);
+
+        [DoesNotReturn]
+        private static void ThrowArgumentOutOfRangeException(string? paramName, object? actualValue, string? message)
+            => throw new ArgumentOutOfRangeException(paramName, actualValue, message);
+
+        [DoesNotReturn]
+        private static void ThrowArgumentException(string? message, string? paramName, Exception? innerException = null)
+            => throw new ArgumentException(message, paramName, innerException);
     }
 }
+#if !NETCOREAPP3_0_OR_GREATER
+namespace System.Diagnostics.CodeAnalysis
+{
+    [AttributeUsage(AttributeTargets.Method)]
+    public class DoesNotReturnAttribute : Attribute { }
+
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.ReturnValue, Inherited = false)]
+    public class NotNullAttribute : Attribute { }
+}
+#endif
+
+#if !NET6_0_OR_GREATER
+namespace System.Runtime.CompilerServices
+{
+
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    public class CallerArgumentExpressionAttribute : Attribute
+    {
+        public CallerArgumentExpressionAttribute(string parameterName)
+        {
+            ParameterName = parameterName;
+        }
+
+        public string ParameterName { get; }
+    }
+}
+#endif
