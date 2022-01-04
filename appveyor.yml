@@ -19,7 +19,7 @@ after_test:
 - ps: >-
     cd src/Preconditions
     
-    nuget pack
+    dotnet pack
     
     cd ../..
 artifacts:
