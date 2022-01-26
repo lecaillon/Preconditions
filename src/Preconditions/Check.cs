@@ -79,7 +79,7 @@
         /// </summary>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
-        public static ICollection<T> NotNullOrEmpty<T>(ICollection<T>? collection, [CallerArgumentExpression("collection")] string? paramName = null)
+        public static ICollection<T> NotNullOrEmpty<T>([NotNull] ICollection<T>? collection, [CallerArgumentExpression("collection")] string? paramName = null)
         {
             NotNull(collection, paramName);
 
@@ -96,7 +96,7 @@
         /// </summary>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
-        public static IEnumerable<T> NotNullOrEmpty<T>(IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
+        public static IEnumerable<T> NotNullOrEmpty<T>([NotNull] IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
         {
             NotNull(enumerable, paramName);
 
@@ -113,7 +113,7 @@
         /// </summary>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
-        public static IEnumerable<T> HasNoNulls<T>(IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
+        public static IEnumerable<T> HasNoNulls<T>([NotNull] IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
         {
             NotNull(enumerable, paramName);
 
