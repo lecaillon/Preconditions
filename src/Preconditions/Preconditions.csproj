@@ -7,7 +7,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<PackageId>Preconditions.NET</PackageId>
 		<Authors>Philippe Lécaillon</Authors>
-		<Version>2.0.0</Version>
+		<Version>2.0.1</Version>
 		<Copyright>Copyright © P.Lécaillon 2022</Copyright>
 		<Description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</Description>
 		<PackageIcon>logo128.png</PackageIcon>
@@ -15,18 +15,8 @@
 		<RepositoryUrl>https://github.com/lecaillon/Preconditions</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>preconditions;guard;check;argument-checks</PackageTags>
-		<PackageReleaseNotes>## Features
-- Add support of the new .NET 6 `CallerArgumentExpression` attribute
-- Add Check.NotEmpty(*Guid*)
-- Add Check.True(*Func&lt;bool&gt;*)
-- Add Check.PositiveOrNull()
-- Add Check.NegativeOrNull()
-- Add Check.NotNegativeOrNull()
-
-## Breaking changes
-- Supports .NET 6 and .NET Standard 2.0 only
-- Remove Check.Zero()
-- Rename Check.NotEmpty(IEnumerable) in Check.NotNullOrEmpty(IEnumerable)</PackageReleaseNotes>
+		<PackageReleaseNotes>## Bug fix
+- Add missing NotNullAttribute</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
