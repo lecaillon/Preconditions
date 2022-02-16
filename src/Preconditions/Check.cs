@@ -1,10 +1,9 @@
 ﻿namespace Preconditions
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
     using System.Runtime.CompilerServices;
 
     /// <summary>
@@ -75,32 +74,15 @@
         }
 
         /// <summary>
-        ///     Ensures that a collection contains at least one element.
-        /// </summary>
-        /// <exception cref="ArgumentNullException"/>
-        /// <exception cref="ArgumentException"/>
-        public static ICollection<T> NotNullOrEmpty<T>([NotNull] ICollection<T>? collection, [CallerArgumentExpression("collection")] string? paramName = null)
-        {
-            NotNull(collection, paramName);
-
-            if (collection.Count == 0)
-            {
-                ThrowArgumentException(CollectionArgumentIsEmpty, paramName);
-            }
-
-            return collection;
-        }
-
-        /// <summary>
         ///     Ensures that an enumerable contains at least one element.
         /// </summary>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
-        public static IEnumerable<T> NotNullOrEmpty<T>([NotNull] IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
+        public static T NotNullOrEmpty<T>([NotNull] T? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null) where T : IEnumerable
         {
             NotNull(enumerable, paramName);
 
-            if (!enumerable.Any())
+            if (!enumerable.GetEnumerator().MoveNext())
             {
                 ThrowArgumentException(CollectionArgumentIsEmpty, paramName);
             }
@@ -113,13 +95,17 @@
         /// </summary>
         /// <exception cref="ArgumentNullException"/>
         /// <exception cref="ArgumentException"/>
-        public static IEnumerable<T> HasNoNulls<T>([NotNull] IEnumerable<T>? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null)
+        public static T HasNoNulls<T>([NotNull] T? enumerable, [CallerArgumentExpression("enumerable")] string? paramName = null) where T : IEnumerable
         {
             NotNull(enumerable, paramName);
 
-            if (enumerable.Any(e => e is null))
+
+            foreach (var item in enumerable)
             {
-                ThrowArgumentException(CollectionArgumentHasNullElement, paramName);
+                if (item is null)
+                {
+                    ThrowArgumentException(CollectionArgumentHasNullElement, paramName);
+                }
             }
 
             return enumerable;

@@ -7,7 +7,7 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<PackageId>Preconditions.NET</PackageId>
 		<Authors>Philippe Lécaillon</Authors>
-		<Version>2.0.1</Version>
+		<Version>2.0.2</Version>
 		<Copyright>Copyright © P.Lécaillon 2022</Copyright>
 		<Description>Preconditions provide convenience static methods that help to check that a method or a constructor is invoked with proper parameter or not. In other words it checks the pre-conditions.</Description>
 		<PackageIcon>logo128.png</PackageIcon>
@@ -16,7 +16,7 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>preconditions;guard;check;argument-checks</PackageTags>
 		<PackageReleaseNotes>## Bug fix
-- Add missing NotNullAttribute</PackageReleaseNotes>
+- NotNullOrEmpty(IEnumerable) and HasNoNulls(IEnumerable) return the same type as the one passed in parameter</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

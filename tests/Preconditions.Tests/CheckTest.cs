@@ -100,43 +100,7 @@ namespace Preconditions.Tests
 
         #endregion
 
-        #region Check.NotNullOrEmpty : ICollection
-
-        [Fact]
-        public void NotNullOrEmpty_When_Collection_Is_Null_Throws_ArgumentNullException()
-        {
-            ICollection<int>? collection = null;
-
-            Assert.Throws<ArgumentNullException>(nameof(collection), () => Check.NotNullOrEmpty(collection));
-        }
-
-        [Fact]
-        public void NotNullOrEmpty_When_Collection_Has_No_Element_Throws_ArgumentException()
-        {
-            ICollection<int> collection = new List<int>();
-
-            Assert.Throws<ArgumentException>(nameof(collection), () => Check.NotNullOrEmpty(collection));
-        }
-
-        [Fact]
-        public void NotNullOrEmpty_When_Collection_Is_Not_Empty_Returns_Collection()
-        {
-            ICollection<int> collection = new List<int> { 1, 2, 3 };
-
-            Assert.Same(collection, Check.NotNullOrEmpty(collection));
-        }
-
-        [Fact]
-        public void Collection_Is_Considered_Not_Null_After_Calling_NotNullOrEmpty()
-        {
-            ICollection<int>? collection = new List<int> { 1 };
-            Check.NotNullOrEmpty(collection);
-            collection.ToString();
-        }
-
-        #endregion
-
-        #region Check.NotNullOrEmpty : IEnumerable
+        #region Check.NotNullOrEmpty
 
         [Fact]
         public void NotNullOrEmpty_When_Enumerable_Is_Null_Throws_ArgumentNullException()
@@ -149,7 +113,7 @@ namespace Preconditions.Tests
         [Fact]
         public void NotNullOrEmpty_When_Enumerable_Has_No_Element_Throws_ArgumentException()
         {
-            IEnumerable<int> enumerable = new List<int>();
+            var enumerable = new List<int>();
 
             Assert.Throws<ArgumentException>(nameof(enumerable), () => Check.NotNullOrEmpty(enumerable));
         }
@@ -157,7 +121,7 @@ namespace Preconditions.Tests
         [Fact]
         public void NotNullOrEmpty_When_Enumerable_Is_Not_Empty_Returns_Enumerable()
         {
-            IEnumerable<int> enumerable = new List<int> { 1, 2, 3 };
+            var enumerable = new List<int> { 1, 2, 3 };
 
             Assert.Same(enumerable, Check.NotNullOrEmpty(enumerable));
         }
